@@ -1,0 +1,33 @@
+.calculatorScreenWrapper {
+  padding: 16px 16px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  .calculatorScreen {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    .historyLine, .pastLine {
+      font-size: 22px;
+      font-weight: 500;
+      height: 26px;
+    }
+    .pastLine {
+      background: linear-gradient(0deg, #B5B5B5 -19.98%, #F0F0F0 100%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .historyLine {
+      color: #909090;
+    }
+    .mainLine {
+      font-size: 50px;
+      font-weight: bold;
+      height: 60px;
+    }
+  }
+}

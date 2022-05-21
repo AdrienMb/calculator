@@ -1,0 +1,11 @@
+.calculator {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .calculatorKeyboardWrapper {
+    // width: 100%;
+    // position: fixed;
+    // bottom: 0;
+  }
+}

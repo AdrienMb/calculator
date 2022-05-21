@@ -1,0 +1,15 @@
+.button {
+  padding: 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: #2D2D2D;
+  border: none;
+  &.blue {
+    background-color: #0058F9;
+    color: #ffffff;
+  }
+  &.grey {
+    background-color: #ECECEC;
+  }
+}

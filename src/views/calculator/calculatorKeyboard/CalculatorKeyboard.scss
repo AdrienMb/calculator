@@ -1,0 +1,17 @@
+.calculatorKeyboardWrapper {
+  .calculatorKeyboard {
+    padding: 16px 16px 40px 16px;
+    border-radius: 16px 16px 0 0;
+    background-color: #F9F9F9;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    .button {
+      aspect-ratio: 1;
+      margin: 6px;
+      font-size: 22px;
+      font-weight: 500;
+      //
+    }
+  }
+}
