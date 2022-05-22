@@ -1,17 +1,32 @@
+@use '../../../assets/styles/colors';
+
 .calculatorKeyboardWrapper {
+  max-height: 450px;
+  max-width: 600px;
   .calculatorKeyboard {
-    padding: 16px 16px 40px 16px;
+    padding: 16px;
     border-radius: 16px 16px 0 0;
-    background-color: #F9F9F9;
+    background-color: colors.$greyLight;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 4px;
     .button {
-      aspect-ratio: 1;
+      aspect-ratio: 2;
       margin: 6px;
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 500;
-      //
+    }
+  }
+  @media (min-height: 800px) {
+    .calculatorKeyboard {
+      border-radius: 16px;
+    }
+  }
+}
+.dark {
+  .calculatorKeyboardWrapper {
+    .calculatorKeyboard {
+      background-color: colors.$dark_greyLight;
     }
   }
 }

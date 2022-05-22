@@ -1,5 +1,7 @@
+@use '../../../assets/styles/colors';
+
 .calculatorScreenWrapper {
-  padding: 16px 16px 24px 16px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -28,6 +30,24 @@
       font-size: 50px;
       font-weight: bold;
       height: 60px;
+      color: colors.$textPrimary;
+    }
+  }
+}
+.dark {
+  .calculatorScreenWrapper {
+    .calculatorScreen {
+      .pastLine {
+        background: linear-gradient(0deg, #797979 -19.98%, #424242 100%);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .historyLine {
+        color: #909090;
+      }
+      .mainLine {
+        color: colors.$dark_textPrimary;
+      }
     }
   }
 }

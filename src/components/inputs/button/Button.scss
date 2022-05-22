@@ -1,15 +1,47 @@
+@use '../../../assets/styles/colors';
+
 .button {
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:12px;
   font-size: 14px;
-  border-radius: 8px;
-  background: #FFFFFF;
-  color: #2D2D2D;
+  border-radius: 12px;
+  background: colors.$white;
+  color: colors.$textPrimary;
   border: none;
-  &.blue {
-    background-color: #0058F9;
-    color: #ffffff;
+  &.disabled {
+    color: colors.$greyMedium;
+  }
+  &.primary {
+    background-color: colors.$primary;
+    color: colors.$white;
   }
   &.grey {
-    background-color: #ECECEC;
+    background-color: colors.$greyMedium;
+  }
+  &.secondary {
+    color: colors.$primary;
+    background-color: colors.$secondary;
+  }
+}
+.dark {
+  .button {
+    background: colors.$dark_white;
+    color: colors.$dark_textPrimary;
+    &.disabled {
+      color: colors.$dark_greyMedium;
+    }
+    &.primary {
+      background-color: colors.$dark_primary;
+      color: colors.$white;
+    }
+    &.grey {
+      background-color: colors.$dark_greyMedium;
+    }
+    &.secondary {
+      color: colors.$dark_primary;
+      background-color: colors.$dark_secondary;
+    }
   }
 }

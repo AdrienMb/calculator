@@ -1,0 +1,60 @@
+@use '../../../assets/styles/colors';
+
+.mainMenu {
+  .menuModal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 8px 16px 8px;
+    border-radius: 16px;
+    background-color: colors.$secondary;
+    .menuModalHeader {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .separator {
+      height: 1px;
+      width: 100%;
+      background-color: colors.$secondaryMedium;
+    }
+    .menuLinks {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .menuLabel {
+        color: colors.$secondaryDark;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .menuLink {
+        a {
+          color: colors.$textPrimary;
+          font-size: 22px;
+          font-weight: bold;
+          &:visited {
+            color: colors.$textPrimary;
+          }
+        }
+        
+      }
+    }
+  }
+}
+
+.dark {
+  .mainMenu {
+    .menuModal {
+      background-color: colors.$dark_secondary;
+      .separator {
+        background-color: colors.$dark_secondaryMedium;
+      }
+      .menuLinks {
+        .menuLabel {
+          color: colors.$dark_secondaryDark;
+        }
+      }
+    }
+  }
+}

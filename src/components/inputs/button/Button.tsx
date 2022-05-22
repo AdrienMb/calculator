@@ -1,19 +1,21 @@
 import React, { ReactNode } from 'react';
+import { InputColors } from '../../../types/ui';
 import './Button.scss';
 
 type Props = {
+  id?: string,
   children?: React.ReactNode;
   disabled?: boolean,
   onClick?: () => void,
-  color?: string;
-  //'default' | 'grey' | 'blue'
+  color?: InputColors;
 };
 
-function Button({ children, onClick, disabled, color } : Props) {
+function Button({ id, children, onClick, disabled, color } : Props) {
   return <button
+      id={id}
       disabled={disabled}
       onClick={onClick}
-      className={`button ${color || ''}`}>
+      className={`button ${color || ''} ${disabled ? 'disabled' : ''}`}>
         {children}
       </button>
 }
