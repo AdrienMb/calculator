@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Button from '../../../components/inputs/button/Button';
 import { ArithmeticIO } from '../../../types/calculator';
 
@@ -43,6 +43,30 @@ function CalculatorKeyboard({ handleClick, isCurrentCalcEmpty} : Props) {
     {label: '+', type: 'operator', value: '+', inputColor: 'grey'}];
 
   const keyboard : ArithmeticIO[][] = [firstRow, secondRow, thirdRow, fourthRow, fithRow];
+  
+  const allKeys : ArithmeticIO[] = firstRow.concat(secondRow).concat(thirdRow).concat(fourthRow).concat(fithRow);
+
+  useEffect(() => {
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      let key = allKeys.find(key => key.label === event.key);
+      if(event.key === 'Enter') {
+        key = {label: '=', type: 'action', value: '='};
+      } else if (event.key === 'Backspace') {
+        key = {label: isCurrentCalcEmpty ? 'AC' : 'C', type: 'action', value: isCurrentCalcEmpty ? 'AC' : 'C'};
+      }
+      console.log(key)
+      if(key) {
+        handleClick(key)
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown, false);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown, false);
+    };
+  }, [handleClick, allKeys, isCurrentCalcEmpty]);
+
   return (
     <div className='calculatorKeyboardWrapper'>
       <div className='calculatorKeyboard'>
@@ -56,6 +80,11 @@ function CalculatorKeyboard({ handleClick, isCurrentCalcEmpty} : Props) {
             </Button>
           )
         )}
+      </div>
+      <div className='useKeyboardDesc'>
+        <div className='separator'></div>
+        <div className='text'>or use your keyboard</div>
+        <div className='separator'></div>
       </div>
     </div>
   );

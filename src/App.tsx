@@ -20,7 +20,7 @@ function App() {
     } else {
       document.body.classList.remove('dark');
     }
-  }, [theme]);
+  }, [themeColor]);
 
   return (
     <ThemeContext.Provider value={theme}>

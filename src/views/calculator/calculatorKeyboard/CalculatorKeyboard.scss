@@ -17,9 +17,29 @@
       font-weight: 500;
     }
   }
-  @media (min-height: 800px) {
+  .useKeyboardDesc {
+    display: none;
+  }
+  @media (min-height: 850px) {
     .calculatorKeyboard {
       border-radius: 16px;
+    }
+    .useKeyboardDesc {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: colors.$textSecondary;
+      .separator {
+        width: 100%;
+        height: 1px;
+        background-color: colors.$textSecondary;
+      }
+      .text {
+        white-space: nowrap;
+        font-size: 16px;
+      }
     }
   }
 }
@@ -27,6 +47,14 @@
   .calculatorKeyboardWrapper {
     .calculatorKeyboard {
       background-color: colors.$dark_greyLight;
+    }
+  }
+  @media (min-height: 800px) {
+    .useKeyboardDesc {
+      color: colors.$dark_textSecondary;
+      .separator {
+        background-color: colors.$dark_textSecondary;
+      }
     }
   }
 }

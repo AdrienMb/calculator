@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CalculatorKeyboard from './calculatorKeyboard/CalculatorKeyboard';
 import CalculatorScreen from './calculatorScreen/CalculatorScreen';
 import CalculatorHeader from './calculatorHeader/CalculatorHeader';
@@ -11,10 +11,11 @@ function Calculator() {
 
   const [resultHistory, setResultHistory] = useState<ArithmeticIO[][]>([[]]);
   const [resultIndex, setResultIndex] = useState<number>(0);
+  const [isNewResult, setIsNewResult] = useState<boolean>(true);
 
   const formatCalc = function (arithmeticIOs: ArithmeticIO[]) : string {
     let formattedCalc = '';
-    arithmeticIOs.map(arithmeticIO => {
+    arithmeticIOs.forEach(arithmeticIO => {
       formattedCalc += arithmeticIO.label;
     })
     return formattedCalc;
@@ -29,24 +30,35 @@ function Calculator() {
         type: 'number'
       }].concat(arithmeticIOs);
     }
-    arithmeticIOs.map(arithmeticIO => {
+    arithmeticIOs.forEach(arithmeticIO => {
       formattedCalc += arithmeticIO.value;
     })
+    setIsNewResult(true);
     return (Math.round(eval(formattedCalc)* 10000000) / 10000000).toString();
   }
 
   const handleClick = function (arithmeticIO: ArithmeticIO) : void {
-    let newResultHistory = [... resultHistory];
+    let newResultHistory = [...resultHistory];
     let currentCalc = newResultHistory[resultIndex];
     const previousChar = currentCalc[newResultHistory[resultIndex].length - 1];
+    let _isNewResult = isNewResult;
+    if(_isNewResult) {
+      setIsNewResult(false);
+    }
     switch(arithmeticIO.type) {
       case 'number': {
-        newResultHistory[resultIndex].push(arithmeticIO);
-        setResultHistory(newResultHistory);
+        if(_isNewResult) {
+          newResultHistory[resultIndex] = [arithmeticIO];
+          setResultHistory(newResultHistory);
+          setIsNewResult(false);
+        } else {
+          newResultHistory[resultIndex].push(arithmeticIO);
+          setResultHistory(newResultHistory);
+        }
         break;
       }
       case 'operator': {
-        if(previousChar && previousChar.type === 'operator') {
+        if(previousChar && previousChar.type === 'operator' && !((previousChar.label === 'x' || previousChar.label === '/') && arithmeticIO.label === '-')) {
           newResultHistory[resultIndex] = currentCalc.slice(0, currentCalc.length - 1);
         }
         newResultHistory[resultIndex].push(arithmeticIO);
@@ -84,14 +96,16 @@ function Calculator() {
               let startNumberIndex = 0;
               for(let i = currentCalc.length - 1; i >= 0 ; i--) {
                 if(currentCalc[i].type !== 'number') {
-                  startNumberIndex = i + 1;
+                  startNumberIndex = i;
                   break;
                 }
               }
-              if(currentCalc[startNumberIndex].value !== '-') {
-                currentCalc = currentCalc.splice(startNumberIndex, 0, {label: '-', value: '-', type: 'operator'});
-              } else {
+              if(currentCalc[startNumberIndex].value === '-') {
                 currentCalc = currentCalc.splice(startNumberIndex, 1);
+              } else if (currentCalc[startNumberIndex].type === 'operator') {
+                currentCalc = currentCalc.splice(startNumberIndex + 1, 0, {label: '-', value: '-', type: 'operator'});
+              } else {
+                currentCalc = currentCalc.splice(startNumberIndex, 0, {label: '-', value: '-', type: 'operator'});
               }
             } else {
               newResultHistory[resultIndex].push({

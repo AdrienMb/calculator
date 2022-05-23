@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { InputColors } from '../../../types/ui';
 import './Button.scss';
 
